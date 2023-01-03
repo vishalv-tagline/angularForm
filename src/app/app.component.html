@@ -1,1 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mt-3">
+      <h2 class="h2 text-center">Template Driven Form</h2>
+      <form #myForm action="">
+        <div class="col-lg-10">
+          <label class="form-label" for="">First Name</label>
+          <input class="form-control form-control-lg" type="text" name="fname" placeholder="Enter Your First Name">
+        </div>
+        <div class="col-lg-10 mt-2">
+          <label for="" class="form-label">Last Name</label>
+          <input type="text" class="form-control form-control-lg" name="lname" placeholder="Enter Your Last Name">
+        </div>
+        <div class="col-lg-10">
+          <label for="" class="form-label">Gender :</label>
+          <input type="radio" class="form-input-check my-3" name="gender" value="Male">Male
+          <input type="radio" class="form-input-check my-5" name="gender" value="Female">Female
+        </div>
+        <div class="col-lg-10">
+          <label for="" class="form-label">Mobile</label>
+          <input type="text" class="form-control form-control-lg" name="mobile" placeholder="Enetr Your Mobile Number">
+        </div>
+        <div class="col-lg-10 mt-2">
+          <label for="" class="form-label">E-mail</label>
+          <input type="text" class="form-control form-control-lg" placeholder="Enter Your E-mail Address">
+        </div>
+        <div class="col-lg-10 mt-3">
+          <button class="btn btn-lg btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-6 mt-3">
+      <h2 class="h2 text-center">Details</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+            <th>E-mail</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
