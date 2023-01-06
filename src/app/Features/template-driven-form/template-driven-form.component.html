@@ -1,0 +1,121 @@
+<!-- <p>template-driven-form works!</p> -->
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-lg-4  p-3 bg-light">
+            <h2 class="h2 text-center text-success">Template Driven Form</h2>
+            <form #myForm="ngForm" name="myFrm" action="" (ngSubmit)="addStud()">
+                <div class="col-lg-12">
+                    <label class="form-label" for="">First Name</label>
+                    <input class="form-control form-control-lg" type="text" placeholder="Enter Your First Name"
+                        name="fname" #fname="ngModel" ngModel required>
+                    <small class="text-danger" *ngIf="fname.invalid && fname.touched"> Enter Valid First Name</small>
+                </div>
+                <div class="col-lg-12 mt-2">
+                    <label for="" class="form-label">Last Name</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Enter Your Last Name"
+                        name="lname" #lname="ngModel" ngModel required>
+                    <small class="text-danger" *ngIf="lname.invalid && lname.touched">Enter Valid Last Name</small>
+                </div>
+                <label for="" class="form-label">Gender : </label>
+                <div class="form-check form-check-inline mt-3">
+                    <input type="radio" class="form-check-input" name="gender" id="male" value="Male" #gender="ngModel"
+                        ngModel required>
+                    <label for="male" class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="gender" id="female" value="Female"
+                        #gender="ngModel" ngModel>
+                    <label for="female" class="form-check-label">Female</label><br>
+                </div>
+                <small class="text-danger" *ngIf="gender.invalid && gender.touched">Select Valid Gender</small>
+
+                <div ngModelGroup="address" #address="ngModelGroup">
+                    <div class="col-lg-12 mt-2">
+                        <label for="" class="form-label">Country</label>
+                        <select name="" id="" class="form-select form-select-lg" name="country" ngModel
+                            #country="ngModel" required (change)="populateState($event)">
+                            <option value="" selected disabled>Select Country</option>
+                            <option [value]="country.id" *ngFor="let country of countryLists">{{country.name}}</option>
+                        </select>
+                    </div>
+                    <small class="text-danger" *ngIf="country.invalid && country.touched">Please select country</small>
+                    <div class="col-lg-12 mt-2">
+                        <label for="" class="form-label">State</label>
+                        <select name="" id="" class="form-select form-select-lg" name="state" ngModel #state="ngModel"
+                            required (change)="populateCity($event)">
+                            <option value="" selected disabled>Select State</option>
+                            <option [value]="state.id" *ngFor="let state of fillterState">{{state.name}}</option>
+                        </select>
+                    </div>
+                    <small class="text-danger" *ngIf="state.invalid && state.touched">Please select state</small>
+                    <div class="col-lg-12 mt-2">
+                        <label for="" class="form-label">City</label>
+                        <select name="" id="" class="form-select form-select-lg" name="city" ngModel #city="ngModel"
+                            required (change)="selectCity($event)">
+                            <option value="" selected disabled>Select City</option>
+                            <option [value]="city.name" *ngFor="let city of fillterCity">{{city.name}}</option>
+                        </select>
+                    </div>
+                    <small class="text-danger" *ngIf="city.invalid && city.touched">Please select city</small>
+                </div>
+
+                <div class="col-lg-12 mt-2">
+                    <label for="" class="form-label">Mobile</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Enetr Your Mobile Number"
+                        name="mobile" #mobile="ngModel" ngModel required minlength="10" maxlength="10"
+                        (keypress)="alphabateNotallowed($event)" onpaste="return false">
+                    <small class="text-danger" *ngIf="mobile.invalid && mobile.touched">Enter 10 digites
+                        in Mobile Number</small>
+                </div>
+                <div class="col-lg-12 mt-2">
+                    <label for="" class="form-label">E-mail</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Enter Your E-mail Address"
+                        name="email" #email="ngModel" ngModel required email>
+                    <small class="text-danger" *ngIf="email.invalid && email.touched">Enter Valid E-mail</small>
+                </div>
+                <div class="col-lg-12 mt-3">
+                    <button type="submit" class="btn btn-lg btn-primary" (click)="addStud()">{{buttonName}}</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-8 mt-3">
+            <h2 class="h2 text-center text-success">Details</h2>
+            <table class="table table-striped">
+                <thead class="table table-dark ">
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>City</th>
+                        <th>Mobile</th>
+                        <th>E-mail</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-light">
+                    <tr *ngFor="let stud of students; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{stud.fname}}</td>
+                        <td>{{stud.lname}}</td>
+                        <td>{{stud.gender}}</td>
+                        <td>{{stud.address.country.name}}</td>
+                        <td>{{stud.address.state.name}}</td>
+                        <td>{{stud.address.city.name}}</td>
+                        <td>{{stud.mobile}}</td>
+                        <td>{{stud.email}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary mx-2" (click)="onUpdate(i)">Edit</button>
+                            <button class="btn btn-sm btn-danger" (click)="onDelete(i)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="students.length == 0">
+                        <td colspan="10" class="text-center text-success">No recored found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
