@@ -90,4 +90,10 @@ export class CommonService {
     }
   ]
   constructor() { }
+
+  saveData(): any {
+    localStorage.setItem('student', JSON.stringify(this.student))
+    const abc = JSON.parse(localStorage.getItem('student')!)
+    console.log("abc :>>", abc)
+  }
 }

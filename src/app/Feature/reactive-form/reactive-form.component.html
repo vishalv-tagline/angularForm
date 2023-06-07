@@ -1,66 +1,121 @@
 <div class="container-fluid p-4">
-    <div class="row p-3">
-        <div class="col-lg-4">
-            <h1 class="text-success text-center ">{{frmHeading}}</h1>
-            <form class="row g-3" [formGroup]="profileForm" (ngSubmit)="addStudent()">
-                <div class="col-lg-12">
-                    <label for="first-name" class="form-label">First Namespan</label>
-                    <input class="form-control form-control-lg" id="first-name" type="text" formControlName="firstName"
-                        placeholder="Enter Your First Name">
-                    <small class="text-danger px-2"
-                        *ngIf="frmControl['firstName'].invalid && frmControl['firstName'].touched">
-                        Enter Valid First Name</small>
-                </div>
-                <div class="col-lg-12">
-                    <label for="last-name" class="form-label">Last Name</label>
-                    <input class="form-control form-control-lg" id="last-name" type="text" formControlName="lastName"
-                        placeholder="Enter Your Last Name">
-                    <small class="text-danger px-2"
-                        *ngIf="frmControl['lastName'].invalid && frmControl['lastName'].touched">Enter Valid
-                        Last Name</small>
-                </div>
-                <div class="col-lg-6">
-                    <label for="" class="form-label">Gender : </label>
-                    <div class="form-check form-check-inline ">
-                        <input type="radio" class="form-check-input mx-2" id="male" value="Male"
-                            formControlName="gender">
-                        <label for="male" class="form-check-label">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input " id="female" value="Female"
-                            formControlName="gender">
-                        <label for="female" class="form-check-label">Female</label><br>
-                    </div><br>
-                    <small class="text-danger px-2"
-                        *ngIf="frmControl['gender'].invalid && frmControl['gender'].touched">Select valid
-                        gender</small>
-                </div>
-                <div class="col-lg-12">
-                    <label for="" class="form-label">Date of Birth</label>
-                    <input type="date" class="form-control form-control-lg" formControlName="dateOfBirth"
-                        name="dateOfBirth">
-                    <small class="text-danger px-2"
-                        *ngIf="frmControl['dateOfBirth'].invalid && frmControl['dateOfBirth'].touched">Enter date of
-                        birth</small>
-                </div>
-                <div class="col-lg-12 mt-2">
-                    <label for="" class="form-label">Mobile</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Enetr Your Mobile Number"
-                        name="mobile" formControlName="mobile" (keypress)="alphabateNotallowed($event)">
-                    <small class="text-danger px-2"
-                        *ngIf="frmControl['mobile'].invalid && frmControl['mobile'].touched">Enter 10
-                        digites
-                        in Mobile Number</small>
-                </div>
-                <div class="col-lg-12 mt-2">
-                    <label for="" class="form-label">Email</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Enetr Your E-mail" name="email"
-                        formControlName="email">
-                    <small class="text-danger px-2"
-                        *ngIf="frmControl['email'].invalid && frmControl['email'].touched">Enter valid email
-                        address</small>
-                </div>
-                <!-- <div class="col-lg-12">
+  <div class="row">
+    <div class="col-lg-4 border rounded p-3 bg-light">
+      <h1 class="text-success text-center">{{ frmHeading }}</h1>
+      <form class="row g-3" [formGroup]="profileForm" (ngSubmit)="addStudent()">
+        <div class="col-lg-12">
+          <label for="first-name" class="form-label">First Name</label>
+          <input
+            class="form-control form-control-lg"
+            id="first-name"
+            type="text"
+            formControlName="firstName"
+            placeholder="Enter Your First Name"
+          />
+          <small
+            class="text-danger px-2"
+            *ngIf="
+              frmControl['firstName'].invalid && frmControl['firstName'].touched
+            "
+          >
+            Enter Valid First Name</small
+          >
+        </div>
+        <div class="col-lg-12">
+          <label for="last-name" class="form-label">Last Name</label>
+          <input
+            class="form-control form-control-lg"
+            id="last-name"
+            type="text"
+            formControlName="lastName"
+            placeholder="Enter Your Last Name"
+          />
+          <small
+            class="text-danger px-2"
+            *ngIf="
+              frmControl['lastName'].invalid && frmControl['lastName'].touched
+            "
+            >Enter Valid Last Name</small
+          >
+        </div>
+        <div class="col-lg-6">
+          <label for="" class="form-label">Gender : </label>
+          <div class="form-check form-check-inline">
+            <input
+              type="radio"
+              class="form-check-input mx-2"
+              id="male"
+              value="Male"
+              formControlName="gender"
+            />
+            <label for="male" class="form-check-label">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              type="radio"
+              class="form-check-input"
+              id="female"
+              value="Female"
+              formControlName="gender"
+            />
+            <label for="female" class="form-check-label">Female</label><br />
+          </div>
+          <br />
+          <small
+            class="text-danger px-2"
+            *ngIf="frmControl['gender'].invalid && frmControl['gender'].touched"
+            >Select valid gender</small
+          >
+        </div>
+        <div class="col-lg-12">
+          <label for="" class="form-label">Date of Birth</label>
+          <input
+            type="date"
+            class="form-control form-control-lg"
+            formControlName="dateOfBirth"
+            name="dateOfBirth"
+          />
+          <small
+            class="text-danger px-2"
+            *ngIf="
+              frmControl['dateOfBirth'].invalid &&
+              frmControl['dateOfBirth'].touched
+            "
+            >Enter date of birth</small
+          >
+        </div>
+        <div class="col-lg-12 mt-2">
+          <label for="" class="form-label">Mobile</label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            placeholder="Enetr Your Mobile Number"
+            name="mobile"
+            formControlName="mobile"
+            (keypress)="alphabateNotallowed($event)"
+          />
+          <small
+            class="text-danger px-2"
+            *ngIf="frmControl['mobile'].invalid && frmControl['mobile'].touched"
+            >Enter 10 digites in Mobile Number</small
+          >
+        </div>
+        <div class="col-lg-12 mt-2">
+          <label for="" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            placeholder="Enetr Your E-mail"
+            name="email"
+            formControlName="email"
+          />
+          <small
+            class="text-danger px-2"
+            *ngIf="frmControl['email'].invalid && frmControl['email'].touched"
+            >Enter valid email address</small
+          >
+        </div>
+        <!-- <div class="col-lg-12">
                     <label for="" class="form-label">Hobbies :</label>
                     <div class="form-check form-check-inline mx-2">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Reading"
@@ -76,45 +131,70 @@
                         one
                         hobbies</small>
                 </div> -->
-                <div formGroupName="address">
-                    <div class="col-lg-12 mb-2">
-                        <label for="country-name" class="form-label">Country</label>
-                        <select id="" formControlName="country" name="country" class="form-select form-select-lg"
-                            (change)=" populateState($event)">
-                            <option value="" selected disabled>Select Country</option>
-                            <option [value]="country.id" *ngFor="let country of countryData">{{country.name}}
-                            </option>
-                        </select>
-                    </div>
-                    <small class="text-danger px-2"
-                        *ngIf="addressVal['country'].invalid && addressVal['country'].touched">Please
-                        select country
-                    </small>
-                    <div class="col-lg-12 mb-2">
-                        <label for="state-name" class="form-label">State</label>
-                        <select id="" formControlName="state" name="state" class="form-select form-select-lg"
-                            (change)="populateCity($event)">
-                            <option value="" selected disabled>Select State</option>
-                            <option [value]="state.id" *ngFor="let state of fillterState">{{state.name}}</option>
-                        </select>
-                    </div>
-                    <small class="text-danger px-2"
-                        *ngIf="addressVal['state'].invalid && addressVal['state'].touched">Please
-                        select
-                        state</small>
-                    <div class="col-lg-12">
-                        <label for="city-name" class="form-label">City</label>
-                        <select id="" formControlName="city" name="city" class="form-select form-select-lg">
-                            <option value="" selected disabled>Select City</option>
-                            <option [value]="city.id" *ngFor="let city of fillterCity">{{city.name}}</option>
-                        </select>
-                    </div>
-                    <small class="text-danger px-2"
-                        *ngIf="addressVal['city'].invalid && addressVal['city'].touched">Please
-                        select city
-                    </small>
-                </div>
-                <div formArrayName="hobbies">
+        <div formGroupName="address">
+          <div class="col-lg-12 mb-2">
+            <label for="country-name" class="form-label">Country</label>
+            <select
+              id=""
+              formControlName="country"
+              name="country"
+              class="form-select form-select-lg"
+              (change)="populateState($event)"
+            >
+              <option value="" selected disabled>Select Country</option>
+              <option [value]="country.id" *ngFor="let country of countryData">
+                {{ country.name }}
+              </option>
+            </select>
+          </div>
+          <small
+            class="text-danger px-2"
+            *ngIf="
+              addressVal['country'].invalid && addressVal['country'].touched
+            "
+            >Please select country
+          </small>
+          <div class="col-lg-12 mb-2">
+            <label for="state-name" class="form-label">State</label>
+            <select
+              id=""
+              formControlName="state"
+              name="state"
+              class="form-select form-select-lg"
+              (change)="populateCity($event)"
+            >
+              <option value="" selected disabled>Select State</option>
+              <option [value]="state.id" *ngFor="let state of fillterState">
+                {{ state.name }}
+              </option>
+            </select>
+          </div>
+          <small
+            class="text-danger px-2"
+            *ngIf="addressVal['state'].invalid && addressVal['state'].touched"
+            >Please select state</small
+          >
+          <div class="col-lg-12">
+            <label for="city-name" class="form-label">City</label>
+            <select
+              id=""
+              formControlName="city"
+              name="city"
+              class="form-select form-select-lg"
+            >
+              <option value="" selected disabled>Select City</option>
+              <option [value]="city.id" *ngFor="let city of fillterCity">
+                {{ city.name }}
+              </option>
+            </select>
+          </div>
+          <small
+            class="text-danger px-2"
+            *ngIf="addressVal['city'].invalid && addressVal['city'].touched"
+            >Please select city
+          </small>
+        </div>
+        <!-- <div formArrayName="hobbies">
                     <label for="" class="form-label">Hobbies</label>
                     <div class="row mt-2" *ngFor="let hobbie of hobbies.controls; let i=index">
                         <div class="col-lg-10">
@@ -123,81 +203,125 @@
                         </div>
                         <div class="col-lg-2">
                             <button type="button" class="btn btn-lg btn-danger" (click)="deleteHobbie(i)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                </svg>
+                                <fa-icon [icon]="faTrash"></fa-icon>
                             </button>
                         </div>
                     </div>
                     <div class="col-lg-2 mt-2">
                         <button type="button" class="btn btn-lg btn-primary" (click)="addHobbie()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                            </svg>
+                            <fa-icon [icon]="faAdd"></fa-icon>
                         </button>
                     </div>
-                </div>
-                <div class="form-check mx-3">
-                    <input type="checkbox" class="form-check-input" id="validationFormCheck1" formControlName="checkbox"
-                        [ngClass]="{ 'is-invalid': submitted &&  frmControl['checkbox'].errors}">
-                    <label class="form-check-label" for="validationFormCheck1">I agree with Terms &
-                        Conditions.</label><br>
-                    <small class="text-danger" *ngIf="submitted && frmControl['checkbox'].errors">Please accept Terms &
-                        Conditions.</small>
-                </div>
-                <div class="col-lg-12 mt-3">
-                    <button class="btn btn-lg btn-success w-100">{{buttonName}}</button>
-                </div>
-            </form><br>
+                </div> -->
+        <div class="form-check mx-3">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="validationFormCheck1"
+            formControlName="checkbox"
+            [ngClass]="{
+              'is-invalid': submitted && frmControl['checkbox'].errors
+            }"
+          />
+          <label class="form-check-label" for="validationFormCheck1"
+            >I agree with Terms & Conditions.</label
+          ><br />
+          <small
+            class="text-danger"
+            *ngIf="submitted && frmControl['checkbox'].errors"
+            >Please accept Terms & Conditions.</small
+          >
         </div>
-        <div class="col-lg-8">
-            <h1 class="h1 text-success text-center">{{frmDetails}}</h1>
-            <table class="table table-responsive table-light table-striped">
-                <thead class="table table-dark">
-                    <tr class="text-center">
-                        <th *ngFor="let tableHead of tableHeader">{{tableHead}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center" *ngFor="let student of studentData;let i=index">
-                        <td>{{i + 1}}</td>
-                        <td>{{student.firstName}}</td>
-                        <td>{{student.lastName}}</td>
-                        <td>{{student.gender}}</td>
-                        <td>{{student.dateOfBirth}}</td>
-                        <td>{{student.mobile}}</td>
-                        <td>{{student.email}}</td>
-                        <td>{{student.address.country.name}}</td>
-                        <td>{{student.address.state.name}}</td>
-                        <td>{{student.address.city.name}}</td>
-                        <td>
-                            <button class="btn btn-md btn-primary" (click)="onEdit(i)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                    <path
-                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                    <path fill-rule="evenodd"
-                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-md btn-danger mx-1" (click)="onDelete(i)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                </svg>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr *ngIf="studentData.length == 0">
-                        <td colspan="12" class="text-center text-success">No recored found</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-lg-12 mt-3">
+          <button class="btn btn-lg btn-success w-100">{{ buttonName }}</button>
         </div>
+      </form>
+      <br />
     </div>
+    <div class="col-lg-8">
+      <h1 class="h1 text-success text-center">{{ frmDetails }}</h1>
+      <table class="table table-responsive table-light table-striped">
+        <thead class="table table-dark">
+          <tr class="text-center">
+            <th *ngFor="let tableHead of tableHeader">{{ tableHead }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="text-center"
+            *ngFor="let student of studentData; let i = index"
+          >
+            <td>{{ i + 1 }}</td>
+            <td>{{ student.firstName }}</td>
+            <td>{{ student.lastName }}</td>
+            <td>{{ student.gender }}</td>
+            <td>{{ student.dateOfBirth }}</td>
+            <td>{{ student.mobile }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.address.country.name }}</td>
+            <td>{{ student.address.state.name }}</td>
+            <td>{{ student.address.city.name }}</td>
+            <td>
+              <button class="btn btn-md btn-primary" (click)="onEdit(i)">
+                <fa-icon [icon]="faPen"></fa-icon>
+              </button>
+              <button
+                class="btn btn-md btn-danger mx-1"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                (click)="findindex(i)"
+              >
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </button>
+              <!-- <button class="btn btn-md btn-danger mx-1" (click)="onDelete(i)">
+                                <fa-icon [icon]="faTrash"></fa-icon>
+                            </button> -->
+            </td>
+          </tr>
+          <tr *ngIf="studentData.length == 0">
+            <td colspan="12" class="text-center text-success">
+              No recored found
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="modal" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-danger">
+                <i class="fa-solid fa-triangle-exclamation"></i> Warning
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p class="text-danger fw-bold">Are you sure delete this?</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                No
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+                (click)="onDelete()"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
